@@ -1,1 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Did the Quota Move the Needle? · PLS 210</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Georgia, serif; background: #1a1a1a; color: #222; }
+  .slide {
+    display: none;
+    min-height: 100vh;
+    padding: 60px 12vw;
+    background: #faf6f0;
+  }
+  .slide.active { display: flex; flex-direction: column; justify-content: center; }
+  .kicker { color: #b5623a; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; font-size: 0.85em; margin-bottom: 10px; }
+  h1 { font-size: 2.3em; margin: 0 0 15px; }
+  h2 { font-size: 1.8em; color: #222; border-bottom: 2px solid #b5623a; padding-bottom: 8px; display: inline-block; }
+  p, li { font-size: 1.15em; line-height: 1.6; }
+  .box { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 18px 24px; margin: 12px 0; }
+  .label { font-weight: bold; color: #b5623a; display: block; margin-bottom: 4px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.5px; }
+  .chain { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 20px 0; }
+  .chain-step { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 12px 18px; }
+  .arrow { color: #b5623a; font-size: 1.5em; }
+  .footer { position: fixed; bottom: 20px; left: 12vw; right: 12vw; display: flex; justify-content: space-between; color: #888; font-size: 0.9em; }
+  .camps { display: flex; gap: 20px; flex-wrap: wrap; }
+  .camp { flex: 1; min-width: 220px; background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }
+</style>
+</head>
+<body>
 
+<div class="slide active">
+  <div class="kicker">The Hypothesis Lab · PLS 210</div>
+  <h1>Did the Quota Move the Needle?</h1>
+  <p>What I want to find out: whether Kazakhstan's 2021 combined gender-youth quota changed how much legislation women MPs initiate in the Mazhilis.</p>
+  <p style="color:#888">Proposal · Positioning &amp; Theory by <strong>smthelse2</strong></p>
+</div>
+
+<div class="slide">
+  <div class="kicker">Research question</div>
+  <h2>Did the quota affect women MPs' legislative output?</h2>
+  <p>Did the 30% combined gender-youth quota (introduced 2021) affect the average number of laws initiated per woman MP in Kazakhstan's Mazhilis, comparing the 2016–2021 session (pre-quota) to the 2021–2026 session (post-quota)?</p>
+</div>
+
+<div class="slide">
+  <div class="kicker">Why here, why now</div>
+  <h2>Why I think it's worth asking</h2>
+  <ul>
+    <li>Combined gender-youth-disability quotas are becoming common outside Western democracies, but are rarely studied there.</li>
+    <li>Kazakhstan's quota doesn't guarantee more women — parties can meet it with youth or disability candidates alone.</li>
+    <li>Whether representation gains translate into legislative behavior remains untested here.</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="kicker">Epistemology · positioning</div>
+  <h2>I work in the positivist tradition</h2>
+  <p>Positivists treat the social world as measurable and look for patterns across cases (Farrow et al. 2020).</p>
+  <ul>
+    <li>My question is cause and effect, with a direction.</li>
+    <li>I compare women MPs' legislative activity before and after the quota.</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="kicker">Literature · the map</div>
+  <h2>Two camps, one shared limitation</h2>
+  <div class="camps">
+    <div class="camp"><strong>Critical mass theorists</strong><p>More women present changes institutional behavior, not just composition.</p></div>
+    <div class="camp"><strong>Institutional skeptics</strong><p>Quotas are largely symbolic, especially in centralized assemblies.</p></div>
+  </div>
+  <p style="margin-top:20px">Both camps draw almost entirely on Western democratic assemblies.</p>
+</div>
+
+<div class="slide">
+  <div class="kicker">Literature · the gap</div>
+  <h2>Two gaps, not one</h2>
+  <div class="box"><span class="label">Data-gap</span>Individual-level bill authorship in the Mazhilis has never been catalogued.</div>
+  <div class="box"><span class="label">Test-gap</span>Because that data doesn't exist, the quota's causal effect on women's legislative output has never been tested — anywhere in Central Asia.</div>
+</div>
+
+<div class="slide">
+  <div class="kicker">Theory</div>
+  <h2>Theory first, then test</h2>
+  <p>Introducing a legislative gender quota increases the substantive legislative output of women MPs, because structural inclusion lowers barriers to agenda-setting — giving women both the critical mass and institutional legitimacy needed to sponsor legislation.</p>
+  <p style="color:#888">Deductive design: theory → hypothesis → test.</p>
+</div>
+
+<div class="slide">
+  <div class="kicker">The mechanism · causal chain</div>
+  <h2>How the quota is supposed to work</h2>
+  <div class="chain">
+    <div class="chain-step">Quota raises women's seat share</div>
+    <div class="arrow">→</div>
+    <div class="chain-step">Less tokenism, more networks</div>
+    <div class="arrow">→</div>
+    <div class="chain-step">Institutional leverage</div>
+    <div class="arrow">→</div>
+    <div class="chain-step">More bills initiated per MP</div>
+  </div>
+  <p style="color:#888">Step 1 must be verified empirically, not assumed — the quota is a combined women/youth/disability category.</p>
+</div>
+
+<div class="slide">
+  <div class="kicker">Hypothesis</div>
+  <h2>H1</h2>
+  <div class="box"><span class="label">IV · cause</span>Implementation of the 30% combined quota (pre- vs. post-2021)</div>
+  <div class="box"><span class="label">DV · outcome</span>Average number of laws initiated per woman MP, per session</div>
+  <div class="box"><span class="label">Direction</span>Positive ▲ (quota → more legislative output per MP)</div>
+</div>
+
+<div class="slide">
+  <div class="kicker">AI transparency</div>
+  <h2>How I worked with AI</h2>
+  <p><em>[Write this yourself: how Claude was used across sessions — as a discussion partner pressure-testing your question, gap, theory, and mechanism — and what you decided and wrote yourself.]</em></p>
+</div>
+
+<div class="slide">
+  <div class="kicker">The Hypothesis Lab</div>
+  <h1>Thank you</h1>
+  <p style="color:#888">PLS 210 · smthelse2</p>
+</div>
+
+<div class="footer">
+  <span id="counter">1 / 11</span>
+  <span>Use → or Space to advance · ← to go back</span>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let i = 0;
+  function show(n) {
+    slides[i].classList.remove('active');
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add('active');
+    document.getElementById('counter').textContent = (i+1) + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') show(i+1);
+    if (e.key === 'ArrowLeft') show(i-1);
+  });
+</script>
+
+</body>
+</html>
