@@ -6,87 +6,175 @@
 <title>Did the Quota Move the Needle? · PLS 210</title>
 <style>
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: Georgia, serif; background: #1a1a1a; color: #222; }
+  body { margin: 0; font-family: Georgia, serif; background: #0a2540; color: #1a1a1a; }
   .slide {
     display: none;
     min-height: 100vh;
-    padding: 60px 12vw;
-    background: #faf6f0;
+    padding: 60px 10vw;
+    background: #faf7f2;
+    position: relative;
+    overflow: hidden;
   }
   .slide.active { display: flex; flex-direction: column; justify-content: center; }
-  .kicker { color: #b5623a; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; font-size: 0.85em; margin-bottom: 10px; }
-  h1 { font-size: 2.3em; margin: 0 0 15px; }
-  h2 { font-size: 1.8em; color: #222; border-bottom: 2px solid #b5623a; padding-bottom: 8px; display: inline-block; }
-  p, li { font-size: 1.15em; line-height: 1.6; }
-  .box { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 18px 24px; margin: 12px 0; }
-  .label { font-weight: bold; color: #b5623a; display: block; margin-bottom: 4px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kicker { color: #c9972e; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; font-size: 0.85em; margin-bottom: 10px; font-family: Arial, sans-serif; }
+  h1 { font-size: 2.4em; margin: 0 0 15px; color: #0a2540; line-height: 1.15; }
+  h2 { font-size: 1.9em; color: #0a2540; border-bottom: 3px solid #c9972e; padding-bottom: 10px; display: inline-block; margin-bottom: 20px; }
+  h3 { color: #0a2540; margin-bottom: 6px; }
+  p, li { font-size: 1.12em; line-height: 1.65; }
+  .box { background: #fff; border: 1px solid #e2d9c9; border-left: 4px solid #c9972e; border-radius: 6px; padding: 18px 24px; margin: 12px 0; }
+  .label { font-weight: bold; color: #c9972e; display: block; margin-bottom: 4px; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; font-family: Arial, sans-serif; }
   .chain { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 20px 0; }
-  .chain-step { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 12px 18px; }
-  .arrow { color: #b5623a; font-size: 1.5em; }
-  .footer { position: fixed; bottom: 20px; left: 12vw; right: 12vw; display: flex; justify-content: space-between; color: #888; font-size: 0.9em; }
-  .camps { display: flex; gap: 20px; flex-wrap: wrap; }
-  .camp { flex: 1; min-width: 220px; background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }
+  .chain-step { background: #fff; border: 1px solid #e2d9c9; border-radius: 8px; padding: 12px 18px; font-size: 0.95em; }
+  .arrow { color: #c9972e; font-size: 1.5em; }
+  .footer { position: fixed; bottom: 18px; left: 10vw; right: 10vw; display: flex; justify-content: space-between; color: #9b9b9b; font-size: 0.85em; font-family: Arial, sans-serif; z-index: 10; }
+  .camps { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 10px; }
+  .camp { background: #fff; border: 1px solid #e2d9c9; border-radius: 8px; padding: 18px; border-top: 4px solid #0a2540; }
+  .camp.performance { border-top-color: #1e7a4c; }
+  .camp.ceiling { border-top-color: #b5442e; }
+  .camp.control { border-top-color: #c9972e; }
+  .camp-num { font-family: Arial, sans-serif; font-weight: bold; color: #9b9b9b; font-size: 0.8em; }
+  .camp p { font-size: 0.95em; line-height: 1.5; }
+  .cite { font-size: 0.82em; color: #9b9b9b; font-family: Arial, sans-serif; margin-top: 8px; }
+  .refs { font-size: 0.95em; line-height: 1.9; }
+  .refs p { text-indent: -24px; padding-left: 24px; font-size: 0.95em; }
+  /* intro slide styling */
+  .intro-slide { background: linear-gradient(160deg, #0a2540 0%, #0f3a5f 60%, #0a2540 100%); color: #faf7f2; align-items: center; text-align: center; }
+  .intro-slide .kicker { color: #c9972e; }
+  .intro-slide h1 { color: #fff; font-size: 2.6em; }
+  .intro-slide p { color: #d9e3ee; }
+  .emblem { width: 130px; height: 130px; margin: 0 auto 20px; }
 </style>
 </head>
 <body>
 
-<div class="slide active">
+<!-- 1. TITLE -->
+<div class="slide active intro-slide">
+  <svg class="emblem" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="46" fill="none" stroke="#c9972e" stroke-width="2"/>
+    <circle cx="50" cy="38" r="14" fill="#c9972e"/>
+    <g stroke="#c9972e" stroke-width="2.2">
+      <line x1="50" y1="24" x2="50" y2="10"/>
+      <line x1="50" y1="24" x2="59" y2="12"/>
+      <line x1="50" y1="24" x2="41" y2="12"/>
+      <line x1="50" y1="24" x2="66" y2="18"/>
+      <line x1="50" y1="24" x2="34" y2="18"/>
+    </g>
+    <path d="M30 62 Q50 78 70 62 L70 68 Q50 84 30 68 Z" fill="#c9972e"/>
+  </svg>
   <div class="kicker">The Hypothesis Lab · PLS 210</div>
   <h1>Did the Quota Move the Needle?</h1>
-  <p>What I want to find out: whether Kazakhstan's 2021 combined gender-youth quota changed how much legislation women MPs initiate in the Mazhilis.</p>
-  <p style="color:#888">Proposal · Positioning &amp; Theory by <strong>smthelse2</strong></p>
+  <p style="max-width:600px; margin:0 auto; font-size:1.2em;">Women MPs and legislative initiation in Kazakhstan's Mazhilis</p>
+  <p style="color:#9bb0c4; margin-top:30px;">Research Design · smthelse2</p>
 </div>
 
+<!-- 2. RESEARCH QUESTION -->
 <div class="slide">
   <div class="kicker">Research question</div>
   <h2>Did the quota affect women MPs' legislative output?</h2>
-  <p>Did the 30% combined gender-youth quota (introduced 2021) affect the average number of laws initiated per woman MP in Kazakhstan's Mazhilis, comparing the 2016–2021 session (pre-quota) to the 2021–2026 session (post-quota)?</p>
+  <p>Did the 30% combined gender-youth quota (introduced 2021) affect the average number of laws initiated per woman MP in Kazakhstan's Mazhilis, comparing the 2016–2021 session (pre-quota) to the 2021–2023 session (7th convocation, post-quota)?</p>
 </div>
 
+<!-- 3. WHY HERE WHY NOW -->
 <div class="slide">
   <div class="kicker">Why here, why now</div>
   <h2>Why I think it's worth asking</h2>
   <ul>
-    <li>Combined gender-youth-disability quotas are becoming common outside Western democracies, but are rarely studied there.</li>
-    <li>Kazakhstan's quota doesn't guarantee more women — parties can meet it with youth or disability candidates alone.</li>
-    <li>Whether representation gains translate into legislative behavior remains untested here.</li>
+    <li>Combined gender-youth-disability quotas are spreading outside Western democracies, but are rarely studied there.</li>
+    <li>Kazakhstan's quota doesn't guarantee more women — parties can meet the 30% threshold using youth or disability candidates alone.</li>
+    <li>Whether representation gains translate into legislative behavior — not just seats — remains untested here.</li>
   </ul>
 </div>
 
+<!-- 4. EPISTEMOLOGY -->
 <div class="slide">
   <div class="kicker">Epistemology · positioning</div>
   <h2>I work in the positivist tradition</h2>
-  <p>Positivists treat the social world as measurable and look for patterns across cases (Farrow et al. 2020).</p>
+  <p>Positivists treat the social world as measurable and look for patterns across cases (Farrow et al., 2020).</p>
   <ul>
-    <li>My question is cause and effect, with a direction.</li>
-    <li>I compare women MPs' legislative activity before and after the quota.</li>
+    <li>My question is cause and effect, with a stated direction.</li>
+    <li>I compare women MPs' legislative activity across a defined pre/post-quota window.</li>
+    <li>The design is deductive: theory → hypothesis → test.</li>
   </ul>
 </div>
 
+<!-- 5. LIT REVIEW OVERVIEW -->
 <div class="slide">
-  <div class="kicker">Literature · the map</div>
-  <h2>Two camps, one shared limitation</h2>
-  <div class="camps">
-    <div class="camp"><strong>Critical mass theorists</strong><p>More women present changes institutional behavior, not just composition.</p></div>
-    <div class="camp"><strong>Institutional skeptics</strong><p>Quotas are largely symbolic, especially in centralized assemblies.</p></div>
-  </div>
-  <p style="margin-top:20px">Both camps draw almost entirely on Western democratic assemblies.</p>
+  <div class="kicker">Literature review</div>
+  <h2>Three camps, one open debate</h2>
+  <p>Existing research on gender quotas splits into three positions on what happens to women's legislative behavior after a quota is introduced. None has been tested on Kazakhstan's Mazhilis.</p>
 </div>
 
+<!-- 6. CAMPS -->
+<div class="slide">
+  <div class="kicker">Literature · the debate</div>
+  <h2>Three camps</h2>
+  <div class="camps">
+    <div class="camp performance">
+      <div class="camp-num">CAMP 1</div>
+      <h3>Performance</h3>
+      <p>Quotas increase an individual woman MP's legislative effort and bill initiation through heightened monitoring, voter expectations, and performance pressure.</p>
+      <div class="cite">Jensen &amp; Wang (2025)</div>
+    </div>
+    <div class="camp ceiling">
+      <div class="camp-num">CAMP 2</div>
+      <h3>Institutional Ceiling</h3>
+      <p>Quotas expand lower-barrier activities like parliamentary questions, but hit a hard ceiling at formal bill initiation due to committee-level gatekeeping.</p>
+      <div class="cite">Ajwang (2026)</div>
+    </div>
+    <div class="camp control">
+      <div class="camp-num">CAMP 3</div>
+      <h3>Regime Control</h3>
+      <p>In electoral authoritarian systems, party leadership controls both access to parliament and subsequent legislative behavior — any shift reflects party strategy, not individual MP agency.</p>
+      <div class="cite">extending Shalaby &amp; Wängnerud (2024); Nurbayev et al. (2024); Kagazbaeva et al. (2025)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. METHODOLOGICAL FRAMING -->
+<div class="slide">
+  <div class="kicker">Literature · methodological framing</div>
+  <h2>How I'll test between them</h2>
+  <div class="box">
+    <span class="label">Childs &amp; Krook (2008)</span>
+    Substantive representation requires moving past aggregate seat percentages to track individual "critical acts" — such as bill sponsorship — rather than assuming numbers alone produce change.
+  </div>
+  <p>Testing between these camps means operationalizing that shift: tracking individual bill sponsorship, not just counting seats. That is the empirical approach this project adopts.</p>
+</div>
+
+<!-- 8. WHICH CAMPS ARE TESTABLE -->
+<div class="slide">
+  <div class="kicker">Literature · what my design can test</div>
+  <h2>Two camps are testable. One is a lens.</h2>
+  <p>My bill-count design can directly distinguish Camp 1 (increase) from Camp 2 (flat/no change) — those predict different directions.</p>
+  <div class="box">
+    <span class="label">Camp 3 is different</span>
+    Because raw bill-count data cannot distinguish self-directed initiative from top-down party assignment, Camp 3 is applied as an interpretive lens, not a falsifiable hypothesis — it is compatible with any directional result.
+  </div>
+</div>
+
+<!-- 9. THE GAP -->
 <div class="slide">
   <div class="kicker">Literature · the gap</div>
-  <h2>Two gaps, not one</h2>
+  <h2>What nobody has tested</h2>
   <div class="box"><span class="label">Data-gap</span>Individual-level bill authorship in the Mazhilis has never been catalogued.</div>
-  <div class="box"><span class="label">Test-gap</span>Because that data doesn't exist, the quota's causal effect on women's legislative output has never been tested — anywhere in Central Asia.</div>
+  <div class="box"><span class="label">Test-gap</span>Because that data doesn't exist, no one has resolved the Camp 1 vs. Camp 2 debate specifically for Kazakhstan's combined quota, or for any Central Asian legislature.</div>
 </div>
 
+<!-- 10. INSTITUTIONAL CONTEXT -->
+<div class="slide">
+  <div class="kicker">Institutional context</div>
+  <h2>Party gatekeeping, not voter choice</h2>
+  <p>Top-down institutional gatekeeping — not voter selection — determines women's access to parliament in electoral authoritarian contexts (Shalaby &amp; Wängnerud, 2024; Nurbayev et al., 2024; Kagazbaeva et al., 2025). Kazakhstan reinforces this through closed-list proportional representation, where voters select party lists rather than individual candidates (Constitutional Law of RK "On Elections," 1995).</p>
+</div>
+
+<!-- 11. THEORY -->
 <div class="slide">
   <div class="kicker">Theory</div>
   <h2>Theory first, then test</h2>
   <p>Introducing a legislative gender quota increases the substantive legislative output of women MPs, because structural inclusion lowers barriers to agenda-setting — giving women both the critical mass and institutional legitimacy needed to sponsor legislation.</p>
-  <p style="color:#888">Deductive design: theory → hypothesis → test.</p>
 </div>
 
+<!-- 12. MECHANISM -->
 <div class="slide">
   <div class="kicker">The mechanism · causal chain</div>
   <h2>How the quota is supposed to work</h2>
@@ -99,23 +187,49 @@
     <div class="arrow">→</div>
     <div class="chain-step">More bills initiated per MP</div>
   </div>
-  <p style="color:#888">Step 1 must be verified empirically, not assumed — the quota is a combined women/youth/disability category.</p>
+  <p style="color:#888">Step 1 is verified, not assumed: seat share rose 27.1% → 27.4% in the 7th convocation (2021–2023), the window this study uses.</p>
 </div>
 
+<!-- 13. SCOPE NOTE -->
+<div class="slide">
+  <div class="kicker">Scope</div>
+  <h2>Why the comparison stops at 2023</h2>
+  <p>The 8th convocation (2023–present) is excluded because women's seat share fell to 17.6% — below its pre-quota level. The quota's core mechanism (raising women's presence) did not hold for this period, so including it would conflate two different empirical situations.</p>
+</div>
+
+<!-- 14. HYPOTHESIS -->
 <div class="slide">
   <div class="kicker">Hypothesis</div>
   <h2>H1</h2>
-  <div class="box"><span class="label">IV · cause</span>Implementation of the 30% combined quota (pre- vs. post-2021)</div>
+  <div class="box"><span class="label">IV · cause</span>Implementation of the 30% combined quota (2016–2021 vs. 2021–2023)</div>
   <div class="box"><span class="label">DV · outcome</span>Average number of laws initiated per woman MP, per session</div>
   <div class="box"><span class="label">Direction</span>Positive ▲ (quota → more legislative output per MP)</div>
 </div>
 
+<!-- 15. AI TRANSPARENCY -->
 <div class="slide">
   <div class="kicker">AI transparency</div>
   <h2>How I worked with AI</h2>
-  <p><em>[Write this yourself: how Claude was used across sessions — as a discussion partner pressure-testing your question, gap, theory, and mechanism — and what you decided and wrote yourself.]</em></p>
+  <p><em>[Write this yourself: how Claude was used across sessions — as a discussion partner pressure-testing your question, sources, camps, theory, and mechanism — and what you decided and wrote yourself.]</em></p>
 </div>
 
+<!-- 16. REFERENCES -->
+<div class="slide">
+  <div class="kicker">References</div>
+  <h2>Works Cited</h2>
+  <div class="refs">
+    <p>Ajwang, O. (2026). Critical gaps in representation: the promise and limits of quota reforms in Kenya. <em>Democratization</em>.</p>
+    <p>Childs, S., &amp; Krook, M. L. (2008). Critical mass theory and women's political representation. <em>Political Studies</em>, 56(3), 725–736.</p>
+    <p>Constitutional Law of the Republic of Kazakhstan (1995). On elections in the Republic of Kazakhstan.</p>
+    <p>Farrow, et al. (2020). GO-GN Research Methods Handbook.</p>
+    <p>Jensen, C., &amp; Wang, S. (2025). Do gender quotas increase legislative voting attendance? The case of the European Parliament. <em>Journal of European Public Policy</em>.</p>
+    <p>Kagazbaeva, A., Kazybekova, A., &amp; Axakalova, G. (2025). Evaluating gender policy in Kazakhstan. <em>Journal of International Women's Studies</em>, 27.</p>
+    <p>Nurbayev, Z. Y., Sultangazy, G. Z., &amp; Serikbayev, B. S. (2024). A study of political party affiliation as a means to enhance gender equality and women's political participation in Kazakhstan. <em>Public Administration and Policy</em>, 27(1), 45–57.</p>
+    <p>Shalaby, M., &amp; Wängnerud, L. (2024). Gender and authoritarian politics: citizens and elites' responses to gender reforms. <em>Comparative Political Studies</em>, 57(14), 2263–2280.</p>
+  </div>
+</div>
+
+<!-- 17. THANK YOU -->
 <div class="slide">
   <div class="kicker">The Hypothesis Lab</div>
   <h1>Thank you</h1>
@@ -123,7 +237,7 @@
 </div>
 
 <div class="footer">
-  <span id="counter">1 / 11</span>
+  <span id="counter">1 / 17</span>
   <span>Use → or Space to advance · ← to go back</span>
 </div>
 
