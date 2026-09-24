@@ -583,10 +583,95 @@
     background: var(--gold-soft);
   }
 
+  /* ================================
+     AI TRANSPARENCY SLIDE
+     ================================ */
+
+  .ai-slide .ai-intro {
+    max-width: 780px;
+    margin-bottom: 25px;
+    color: #5d6265;
+    font-size: .98em;
+    line-height: 1.55;
+  }
+
+  .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 4px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ai-card {
+    background: rgba(255,253,249,.95);
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    padding: 19px 21px;
+    min-height: 145px;
+    box-shadow: 0 9px 25px rgba(10,37,64,.055);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .ai-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(10,37,64,.09);
+  }
+
+  .ai-number {
+    font-family: Arial, sans-serif;
+    color: var(--gold);
+    font-size: .68em;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin-bottom: 11px;
+  }
+
+  .ai-card h3 {
+    font-size: 1.05rem;
+    margin: 0 0 7px;
+  }
+
+  .ai-card p {
+    font-size: .82em;
+    line-height: 1.45;
+    color: #666b6e;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .ai-card:nth-child(4) {
+    border-top: 3px solid var(--gold);
+  }
+
+  .ai-card:nth-child(5) {
+    border-top: 3px solid var(--navy);
+  }
+
+  .ai-card:nth-child(6) {
+    border-top: 3px solid var(--green);
+  }
+
+  .ai-bottom {
+    margin-top: 19px;
+    padding: 11px 17px;
+    border-left: 3px solid var(--gold);
+    background: rgba(234,217,168,.18);
+    color: #666;
+    font-size: .76em;
+    font-family: Arial, sans-serif;
+    position: relative;
+    z-index: 2;
+  }
+
   @media (max-width: 850px) {
     .camps,
     .gapgrid,
-    .refs {
+    .refs,
+    .ai-grid {
       grid-template-columns: 1fr;
       columns: 1;
     }
@@ -621,11 +706,11 @@
   <div class="intro-decoration two"></div>
   <div class="intro-decoration three"></div>
   <div class="intro-content">
-<div class="kicker">The Hypothesis Lab · PLS 210</div>
-  <h1>Did the Quota Move the Needle?</h1>
-  <div class="intro-line"></div>
-  <p class="intro-subtitle">Women MPs and legislative initiation in Kazakhstan's Mazhilis</p>
-  <p class="intro-meta">Research Design · smthelse2</p>
+    <div class="kicker">The Hypothesis Lab · PLS 210</div>
+    <h1>Did the Quota Move the Needle?</h1>
+    <div class="intro-line"></div>
+    <p class="intro-subtitle">Women MPs and legislative initiation in Kazakhstan's Mazhilis</p>
+    <p class="intro-meta">Research Design · smthelse2</p>
   </div>
 </div>
 
@@ -796,72 +881,66 @@
   <div class="box"><span class="label">Direction</span>Positive ▲ (quota → more legislative output per MP)</div>
 </div>
 
+
 <!-- Slide 15: How I Worked with AI -->
-<div class="slide">
-  <div class="kicker">15 · AI TRANSPARENCY</div>
+<div class="slide ai-slide">
+  <div class="topbar"></div>
+
+  <div class="kicker">AI transparency</div>
+
   <h2>How I Worked with AI</h2>
-  <p class="lead">
-    AI was used as a thinking partner throughout the research process, 
-    not as a replacement for my own decisions.
+
+  <p class="ai-intro">
+    AI was a thinking partner throughout the research process —
+    helping me question, test, and refine my own work.
   </p>
 
-  <div class="grid-2" style="margin-top:32px;">
+  <div class="ai-grid">
 
-    <div class="card">
-      <div class="card-number">01</div>
+    <div class="ai-card">
+      <div class="ai-number">01</div>
       <h3>Research Question</h3>
-      <p>
-        I developed the research question myself. Claude helped me narrow it
-        down by asking leading questions and challenging my initial ideas.
-      </p>
+      <p>Helped narrow my own question through leading questions.</p>
     </div>
 
-    <div class="card">
-      <div class="card-number">02</div>
+    <div class="ai-card">
+      <div class="ai-number">02</div>
       <h3>Sources</h3>
-      <p>
-        AI helped me identify and choose more relevant academic sources
-        for my literature review.
-      </p>
+      <p>Helped identify and select more relevant academic sources.</p>
     </div>
 
-    <div class="card">
-      <div class="card-number">03</div>
-      <h3>Checking My Understanding</h3>
-      <p>
-        Claude checked my understanding at each stage and asked questions
-        when my reasoning needed clarification.
-      </p>
+    <div class="ai-card">
+      <div class="ai-number">03</div>
+      <h3>Understanding</h3>
+      <p>Checked my understanding and asked questions when needed.</p>
     </div>
 
-    <div class="card">
-      <div class="card-number">04</div>
+    <div class="ai-card">
+      <div class="ai-number">04</div>
       <h3>Critical Thinking</h3>
-      <p>
-        AI tested my arguments, made me doubt my assumptions, and pushed me
-        to ask better questions and understand my research more deeply.
-      </p>
+      <p>Challenged assumptions and tested my arguments.</p>
     </div>
 
-    <div class="card">
-      <div class="card-number">05</div>
-      <h3>Step-by-Step Feedback</h3>
-      <p>
-        Throughout the process, AI checked each step of my research design
-        and helped me identify weaknesses before moving forward.
-      </p>
+    <div class="ai-card">
+      <div class="ai-number">05</div>
+      <h3>Research Design</h3>
+      <p>Reviewed each step and helped reveal weaknesses.</p>
     </div>
 
-    <div class="card">
-      <div class="card-number">06</div>
+    <div class="ai-card">
+      <div class="ai-number">06</div>
       <h3>Presentation</h3>
-      <p>
-        AI also helped me create and design this webpage presentation.
-      </p>
+      <p>Assisted with the design and development of this webpage.</p>
     </div>
 
   </div>
+
+  <div class="ai-bottom">
+    <strong>My decisions remained my own.</strong>
+    AI supported the process — it did not replace my research or judgment.
+  </div>
 </div>
+
 
 <div class="slide">
   <div class="topbar"></div>
@@ -885,9 +964,9 @@
   <div class="intro-decoration two"></div>
   <div class="intro-decoration three"></div>
   <div class="intro-content">
-<h1>Thank you</h1>
-  <div class="thank-you-line"></div>
-  <p>PLS 210 · smthelse2</p>
+    <h1>Thank you</h1>
+    <div class="thank-you-line"></div>
+    <p>PLS 210 · smthelse2</p>
   </div>
 </div>
 
@@ -899,15 +978,18 @@
 <script>
   const slides = document.querySelectorAll('.slide');
   let i = 0;
+
   function show(n) {
     slides[i].classList.remove('active');
     i = (n + slides.length) % slides.length;
     slides[i].classList.add('active');
-    document.getElementById('counter').textContent = (i+1) + ' / ' + slides.length;
+    document.getElementById('counter').textContent =
+      (i + 1) + ' / ' + slides.length;
   }
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') show(i+1);
-    if (e.key === 'ArrowLeft') show(i-1);
+    if (e.key === 'ArrowRight' || e.key === ' ') show(i + 1);
+    if (e.key === 'ArrowLeft') show(i - 1);
   });
 </script>
 
