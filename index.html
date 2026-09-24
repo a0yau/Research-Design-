@@ -4,314 +4,995 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Did the Quota Move the Needle? · PLS 210</title>
+
 <style>
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: Georgia, serif; background: #0a2540; color: #1a1a1a; }
+
+  body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: #0a2540;
+    color: #1a1a1a;
+  }
+
   .slide {
     display: none;
     min-height: 100vh;
     padding: 70px 10vw 100px;
     background: #faf7f2;
     position: relative;
+    overflow: hidden;
   }
-  .slide.active { display: flex; flex-direction: column; justify-content: center; }
-  .topbar { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #0a2540 0%, #c9972e 100%); }
-  .kicker { color: #c9972e; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; font-size: 0.85em; font-family: Arial, sans-serif; }
-  h1 { font-size: 2.4em; margin: 0 0 15px; color: #0a2540; line-height: 1.15; }
-  h2 { font-size: 1.9em; color: #0a2540; border-bottom: 3px solid #c9972e; padding-bottom: 10px; display: inline-block; margin-bottom: 22px; }
-  h3 { color: #0a2540; margin: 0 0 6px; }
-  p, li { font-size: 1.1em; line-height: 1.65; }
-  .box { background: #fff; border: 1px solid #e2d9c9; border-left: 4px solid #c9972e; border-radius: 6px; padding: 18px 24px; margin: 12px 0; }
-  .label { font-weight: bold; color: #c9972e; display: block; margin-bottom: 4px; font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.5px; font-family: Arial, sans-serif; }
-  .chain { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 20px 0; }
-  .chain-step { background: #fff; border: 1px solid #e2d9c9; border-radius: 8px; padding: 12px 18px; font-size: 0.95em; }
-  .arrow { color: #c9972e; font-size: 1.5em; }
-  .footer { position: fixed; bottom: 18px; left: 10vw; right: 10vw; display: flex; justify-content: space-between; color: #9b9b9b; font-size: 0.85em; font-family: Arial, sans-serif; z-index: 10; }
-  .camps { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 10px; }
-  .camp { background: #fff; border: 1px solid #e2d9c9; border-radius: 8px; padding: 18px; border-top: 4px solid #0a2540; }
-  .camp.performance { border-top-color: #1e7a4c; }
-  .camp.ceiling { border-top-color: #b5442e; }
-  .camp.control { border-top-color: #c9972e; }
-  .camp-num { font-family: Arial, sans-serif; font-weight: bold; color: #9b9b9b; font-size: 0.8em; }
-  .camp p { font-size: 0.95em; line-height: 1.5; }
-  .cite { font-size: 0.82em; color: #9b9b9b; font-family: Arial, sans-serif; margin-top: 8px; }
-  .refs p { text-indent: -24px; padding-left: 24px; font-size: 0.92em; }
-  .pass-note { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; background: #eef6ee; border: 1px solid #bfe0bf; color: #1e7a4c; border-radius: 20px; padding: 8px 18px; font-family: Arial, sans-serif; font-size: 0.88em; }
-  .pass-note b { color: #14602f; }
-  .intro-slide { background: linear-gradient(160deg, #0a2540 0%, #0f3a5f 55%, #0a2540 100%); color: #faf7f2; align-items: center; text-align: center; }
-  .intro-slide .kicker { color: #c9972e; }
-  .intro-slide h1 { color: #fff; font-size: 2.6em; }
-  .intro-slide p { color: #d9e3ee; }
-  .intro-art { width: 220px; margin: 0 auto 10px; }
-  .statement-slide { align-items: center; text-align: center; }
-  .statement-slide h2 { border: none; font-size: 1.5em; color: #c9972e; letter-spacing: 0.5px; }
-  .statement { font-family: Georgia, serif; font-size: 1.7em; line-height: 1.5; color: #0a2540; max-width: 780px; margin: 0 auto; position: relative; padding: 10px 40px; }
-  .statement::before { content: "“"; font-size: 2.2em; color: #c9972e; position: absolute; left: -10px; top: -10px; }
-  .statement::after { content: "”"; font-size: 2.2em; color: #c9972e; position: absolute; right: -10px; bottom: -30px; }
-  .rule { width: 70px; height: 3px; background: #c9972e; margin: 26px auto 0; }
-  .gapgrid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 14px; align-items: stretch; }
-  .gapcard { background: #fff; border: 1px solid #e2d9c9; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; }
-  .gapcard .icon { font-family: Arial, sans-serif; font-size: 1.6em; color: #c9972e; margin-bottom: 6px; }
-  .gapcard.contribution { border-top: 4px solid #1e7a4c; background: #f5faf5; }
-  .gapcard p { font-size: 0.95em; line-height: 1.5; }
-  .flowrow { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 26px 0; flex-wrap: wrap; }
-  .flownode { background: #fff; border: 2px solid #0a2540; border-radius: 8px; padding: 14px 20px; font-family: Arial, sans-serif; font-weight: bold; font-size: 0.95em; color: #0a2540; text-align: center; }
-  .flownode.dim { border-color: #c9c2b2; color: #9b9b9b; text-decoration: line-through; }
-  .flownode.gate { border-color: #c9972e; background: #fdf8ee; }
-  .flow-arrow { color: #c9972e; font-size: 1.4em; }
-  .context-note { font-size: 0.95em; color: #555; font-style: italic; margin-top: 10px; }
-  .h1statement { background: #0a2540; color: #faf7f2; border-radius: 8px; padding: 22px 28px; margin-bottom: 20px; font-size: 1.15em; line-height: 1.6; }
-  .h1statement b { color: #c9972e; }
+
+  .slide.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #0a2540 0%, #c9972e 100%);
+    z-index: 5;
+  }
+
+  .kicker {
+    color: #c9972e;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    font-family: Arial, sans-serif;
+  }
+
+  h1 {
+    font-size: 2.4em;
+    margin: 0 0 15px;
+    color: #0a2540;
+    line-height: 1.15;
+  }
+
+  h2 {
+    font-size: 1.9em;
+    color: #0a2540;
+    border-bottom: 3px solid #c9972e;
+    padding-bottom: 10px;
+    display: inline-block;
+    margin-bottom: 22px;
+  }
+
+  h3 {
+    color: #0a2540;
+    margin: 0 0 6px;
+  }
+
+  p, li {
+    font-size: 1.1em;
+    line-height: 1.65;
+  }
+
+  .box {
+    background: #fff;
+    border: 1px solid #e2d9c9;
+    border-left: 4px solid #c9972e;
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin: 12px 0;
+  }
+
+  .label {
+    font-weight: bold;
+    color: #c9972e;
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.82em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: Arial, sans-serif;
+  }
+
+  .chain {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .chain-step {
+    background: #fff;
+    border: 1px solid #e2d9c9;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 0.95em;
+  }
+
+  .arrow {
+    color: #c9972e;
+    font-size: 1.5em;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 18px;
+    left: 10vw;
+    right: 10vw;
+    display: flex;
+    justify-content: space-between;
+    color: #9b9b9b;
+    font-size: 0.85em;
+    font-family: Arial, sans-serif;
+    z-index: 10;
+  }
+
+  .camps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    margin-top: 10px;
+  }
+
+  .camp {
+    background: #fff;
+    border: 1px solid #e2d9c9;
+    border-radius: 8px;
+    padding: 18px;
+    border-top: 4px solid #0a2540;
+  }
+
+  .camp.performance {
+    border-top-color: #1e7a4c;
+  }
+
+  .camp.ceiling {
+    border-top-color: #b5442e;
+  }
+
+  .camp.control {
+    border-top-color: #c9972e;
+  }
+
+  .camp-num {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #9b9b9b;
+    font-size: 0.8em;
+  }
+
+  .camp p {
+    font-size: 0.95em;
+    line-height: 1.5;
+  }
+
+  .cite {
+    font-size: 0.82em;
+    color: #9b9b9b;
+    font-family: Arial, sans-serif;
+    margin-top: 8px;
+  }
+
+  .refs p {
+    text-indent: -24px;
+    padding-left: 24px;
+    font-size: 0.92em;
+  }
+
+  .pass-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    background: #eef6ee;
+    border: 1px solid #bfe0bf;
+    color: #1e7a4c;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-family: Arial, sans-serif;
+    font-size: 0.88em;
+  }
+
+  .pass-note b {
+    color: #14602f;
+  }
+
+  /* =========================================
+     INTRO + THANK YOU SLIDE DESIGN
+     Same cream background as all other slides
+     ========================================= */
+
+  .intro-slide {
+    background: #faf7f2;
+    color: #1a1a1a;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative background circle */
+  .intro-slide::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border: 1px solid rgba(201, 151, 46, 0.18);
+    border-radius: 50%;
+    top: -170px;
+    right: -120px;
+  }
+
+  /* Second decorative circle */
+  .intro-slide::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border: 1px solid rgba(10, 37, 64, 0.10);
+    border-radius: 50%;
+    bottom: -130px;
+    left: -100px;
+  }
+
+  /* Small decorative dots */
+  .intro-decoration {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #c9972e;
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+
+  .intro-decoration.one {
+    top: 24%;
+    left: 18%;
+  }
+
+  .intro-decoration.two {
+    top: 32%;
+    right: 16%;
+    width: 5px;
+    height: 5px;
+  }
+
+  .intro-decoration.three {
+    bottom: 22%;
+    right: 24%;
+    width: 7px;
+    height: 7px;
+  }
+
+  .intro-content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+  }
+
+  .intro-slide .kicker {
+    color: #c9972e;
+    margin-bottom: 18px;
+  }
+
+  .intro-slide h1 {
+    color: #0a2540;
+    font-size: 2.8em;
+    margin-bottom: 18px;
+  }
+
+  .intro-slide .intro-subtitle {
+    color: #444;
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 1.2em;
+  }
+
+  .intro-line {
+    width: 70px;
+    height: 3px;
+    background: #c9972e;
+    margin: 28px auto;
+  }
+
+  .intro-slide .intro-meta {
+    color: #9b9b9b;
+    margin-top: 25px;
+    font-family: Arial, sans-serif;
+    font-size: 0.9em;
+  }
+
+  .statement-slide {
+    align-items: center;
+    text-align: center;
+  }
+
+  .statement-slide h2 {
+    border: none;
+    font-size: 1.5em;
+    color: #c9972e;
+    letter-spacing: 0.5px;
+  }
+
+  .statement {
+    font-family: Georgia, serif;
+    font-size: 1.7em;
+    line-height: 1.5;
+    color: #0a2540;
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    padding: 10px 40px;
+  }
+
+  .statement::before {
+    content: "“";
+    font-size: 2.2em;
+    color: #c9972e;
+    position: absolute;
+    left: -10px;
+    top: -10px;
+  }
+
+  .statement::after {
+    content: "”";
+    font-size: 2.2em;
+    color: #c9972e;
+    position: absolute;
+    right: -10px;
+    bottom: -30px;
+  }
+
+  .rule {
+    width: 70px;
+    height: 3px;
+    background: #c9972e;
+    margin: 26px auto 0;
+  }
+
+  .gapgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    margin-top: 14px;
+    align-items: stretch;
+  }
+
+  .gapcard {
+    background: #fff;
+    border: 1px solid #e2d9c9;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .gapcard .icon {
+    font-family: Arial, sans-serif;
+    font-size: 1.6em;
+    color: #c9972e;
+    margin-bottom: 6px;
+  }
+
+  .gapcard.contribution {
+    border-top: 4px solid #1e7a4c;
+    background: #f5faf5;
+  }
+
+  .gapcard p {
+    font-size: 0.95em;
+    line-height: 1.5;
+  }
+
+  .flowrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 26px 0;
+    flex-wrap: wrap;
+  }
+
+  .flownode {
+    background: #fff;
+    border: 2px solid #0a2540;
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 0.95em;
+    color: #0a2540;
+    text-align: center;
+  }
+
+  .flownode.dim {
+    border-color: #c9c2b2;
+    color: #9b9b9b;
+    text-decoration: line-through;
+  }
+
+  .flownode.gate {
+    border-color: #c9972e;
+    background: #fdf8ee;
+  }
+
+  .flow-arrow {
+    color: #c9972e;
+    font-size: 1.4em;
+  }
+
+  .context-note {
+    font-size: 0.95em;
+    color: #555;
+    font-style: italic;
+    margin-top: 10px;
+  }
+
+  .h1statement {
+    background: #0a2540;
+    color: #faf7f2;
+    border-radius: 8px;
+    padding: 22px 28px;
+    margin-bottom: 20px;
+    font-size: 1.15em;
+    line-height: 1.6;
+  }
+
+  .h1statement b {
+    color: #c9972e;
+  }
+
+  /* =========================================
+     END / THANK YOU SLIDE
+     ========================================= */
+
+  .thank-you-slide {
+    background: #faf7f2;
+  }
+
+  .thank-you-slide h1 {
+    color: #0a2540;
+    font-size: 3em;
+  }
+
+  .thank-you-slide p {
+    color: #9b9b9b;
+    font-family: Arial, sans-serif;
+  }
+
+  .thank-you-line {
+    width: 70px;
+    height: 3px;
+    background: #c9972e;
+    margin: 20px auto 25px;
+  }
+
+  @media (max-width: 800px) {
+    .camps,
+    .gapgrid {
+      grid-template-columns: 1fr;
+    }
+
+    .intro-slide h1 {
+      font-size: 2.2em;
+    }
+
+    .slide {
+      padding-left: 7vw;
+      padding-right: 7vw;
+    }
+  }
 </style>
 </head>
+
 <body>
 
+<!-- INTRO SLIDE -->
 <div class="slide active intro-slide">
   <div class="topbar"></div>
-  <svg class="intro-art" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="100" cy="60" r="26" fill="#c9972e"/>
-    <g stroke="#c9972e" stroke-width="3">
-      <line x1="100" y1="60" x2="100" y2="10" />
-      <line x1="100" y1="60" x2="130" y2="20" />
-      <line x1="100" y1="60" x2="70" y2="20" />
-      <line x1="100" y1="60" x2="150" y2="35" />
-      <line x1="100" y1="60" x2="50" y2="35" />
-      <line x1="100" y1="60" x2="160" y2="60" />
-      <line x1="100" y1="60" x2="40" y2="60" />
-    </g>
-    <path d="M40 150 Q100 190 160 150 L160 165 Q100 205 40 165 Z" fill="#c9972e"/>
-    <path d="M100 95 L60 150 L80 150 L100 120 L120 150 L140 150 Z" fill="#0f3a5f" stroke="#c9972e" stroke-width="1.5"/>
-  </svg>
-  <div class="kicker">The Hypothesis Lab · PLS 210</div>
-  <h1>Did the Quota Move the Needle?</h1>
-  <p style="max-width:600px; margin:0 auto; font-size:1.2em;">Women MPs and legislative initiation in Kazakhstan's Mazhilis</p>
-  <p style="color:#9bb0c4; margin-top:30px;">Research Design · smthelse2</p>
+
+  <div class="intro-decoration one"></div>
+  <div class="intro-decoration two"></div>
+  <div class="intro-decoration three"></div>
+
+  <div class="intro-content">
+    <div class="kicker">The Hypothesis Lab · PLS 210</div>
+
+    <h1>Did the Quota Move the Needle?</h1>
+
+    <div class="intro-line"></div>
+
+    <p class="intro-subtitle">
+      Women MPs and legislative initiation in Kazakhstan's Mazhilis
+    </p>
+
+    <p class="intro-meta">
+      Research Design · smthelse2
+    </p>
+  </div>
 </div>
 
+
+<!-- SLIDE 2 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">Research question</div>
   <h2>Did the quota affect women MPs' legislative output?</h2>
-  <p>Did the 30% combined gender-youth quota (introduced 2021) affect the average number of laws initiated per woman MP in Kazakhstan's Mazhilis, comparing the 2016–2021 session (pre-quota) to the 2021–2023 session (7th convocation, post-quota)?</p>
-  <div class="pass-note">✓ <b>Passes all three tests:</b> empirical · scoped · answerable</div>
+
+  <p>
+    Did the 30% combined gender-youth quota (introduced 2021) affect the
+    average number of laws initiated per woman MP in Kazakhstan's Mazhilis,
+    comparing the 2016–2021 session (pre-quota) to the 2021–2023 session
+    (7th convocation, post-quota)?
+  </p>
+
+  <div class="pass-note">
+    ✓ <b>Passes all three tests:</b> empirical · scoped · answerable
+  </div>
 </div>
 
+
+<!-- SLIDE 3 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">Why here, why now</div>
   <h2>Why I think it's worth asking</h2>
+
   <ul>
-    <li>Combined gender-youth-disability quotas are spreading outside Western democracies, but are rarely studied there.</li>
-    <li>Kazakhstan's quota doesn't guarantee more women — parties can meet the 30% threshold using youth or disability candidates alone.</li>
-    <li>Whether representation gains translate into legislative behavior — not just seats — remains untested here.</li>
+    <li>
+      Combined gender-youth-disability quotas are spreading outside Western
+      democracies, but are rarely studied there.
+    </li>
+
+    <li>
+      Kazakhstan's quota doesn't guarantee more women — parties can meet the
+      30% threshold using youth or disability candidates alone.
+    </li>
+
+    <li>
+      Whether representation gains translate into legislative behavior —
+      not just seats — remains untested here.
+    </li>
   </ul>
 </div>
 
+
+<!-- SLIDE 4 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">Epistemology · positioning</div>
   <h2>Positivist tradition</h2>
-  <p>Positivists treat the social world as measurable and look for patterns across cases (Farrow et al., 2020).</p>
+
+  <p>
+    Positivists treat the social world as measurable and look for patterns
+    across cases (Farrow et al., 2020).
+  </p>
+
   <ul>
     <li>My question is cause and effect, with a stated direction.</li>
-    <li>I compare women MPs' legislative activity across a defined pre/post-quota window.</li>
+    <li>
+      I compare women MPs' legislative activity across a defined
+      pre/post-quota window.
+    </li>
     <li>The design is deductive: theory → hypothesis → test.</li>
   </ul>
 </div>
 
+
+<!-- SLIDE 5 -->
 <div class="slide statement-slide">
   <div class="topbar"></div>
   <div class="kicker">Literature review</div>
   <h2>Three camps, one open debate</h2>
-  <p class="statement">Existing research on gender quotas splits into three positions on what happens to women's legislative behavior after a quota is introduced — and none has been tested on Kazakhstan's Mazhilis.</p>
+
+  <p class="statement">
+    Existing research on gender quotas splits into three positions on what
+    happens to women's legislative behavior after a quota is introduced —
+    and none has been tested on Kazakhstan's Mazhilis.
+  </p>
+
   <div class="rule"></div>
 </div>
 
+
+<!-- SLIDE 6 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">Literature · the debate</div>
   <h2>Three camps</h2>
+
   <div class="camps">
+
     <div class="camp performance">
       <div class="camp-num">CAMP 1</div>
       <h3>Performance</h3>
-      <p>Quotas increase an individual woman MP's legislative effort and bill initiation through heightened monitoring, voter expectations, and performance pressure.</p>
+      <p>
+        Quotas increase an individual woman MP's legislative effort and bill
+        initiation through heightened monitoring, voter expectations, and
+        performance pressure.
+      </p>
       <div class="cite">Jensen &amp; Wang (2025)</div>
     </div>
+
     <div class="camp ceiling">
       <div class="camp-num">CAMP 2</div>
       <h3>Institutional Ceiling</h3>
-      <p>Quotas expand lower-barrier activities like parliamentary questions, but hit a hard ceiling at formal bill initiation due to committee-level gatekeeping.</p>
+      <p>
+        Quotas expand lower-barrier activities like parliamentary questions,
+        but hit a hard ceiling at formal bill initiation due to committee-level
+        gatekeeping.
+      </p>
       <div class="cite">Ajwang (2026)</div>
     </div>
+
     <div class="camp control">
       <div class="camp-num">CAMP 3</div>
       <h3>Regime Control</h3>
-      <p>In electoral authoritarian systems, party leadership controls both access to parliament and subsequent legislative behavior — any shift reflects party strategy, not individual MP agency.</p>
-      <div class="cite">extending Shalaby &amp; Wängnerud (2024); Nurbayev et al. (2024); Kagazbaeva et al. (2025)</div>
+      <p>
+        In electoral authoritarian systems, party leadership controls both
+        access to parliament and subsequent legislative behavior — any shift
+        reflects party strategy, not individual MP agency.
+      </p>
+      <div class="cite">
+        extending Shalaby &amp; Wängnerud (2024);
+        Nurbayev et al. (2024); Kagazbaeva et al. (2025)
+      </div>
     </div>
+
   </div>
 </div>
 
+
+<!-- SLIDE 7 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">Literature · methodological framing</div>
   <h2>How I'll test between them</h2>
+
   <div class="box">
     <span class="label">Childs &amp; Krook (2008)</span>
-    Substantive representation requires moving past aggregate seat percentages to track individual "critical acts" — such as bill sponsorship — rather than assuming numbers alone produce change.
+    Substantive representation requires moving past aggregate seat percentages
+    to track individual "critical acts" — such as bill sponsorship — rather
+    than assuming numbers alone produce change.
   </div>
-  <p>Testing between these camps means operationalizing that shift: tracking individual bill sponsorship, not just counting seats. That is the empirical approach this project adopts.</p>
+
+  <p>
+    Testing between these camps means operationalizing that shift: tracking
+    individual bill sponsorship, not just counting seats. That is the
+    empirical approach this project adopts.
+  </p>
 </div>
 
+
+<!-- SLIDE 8 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">Literature · what my design can test</div>
   <h2>Two camps are testable. One is a lens.</h2>
-  <p>My bill-count design can directly distinguish Camp 1 (increase) from Camp 2 (flat / no change) — those predict different directions.</p>
+
+  <p>
+    My bill-count design can directly distinguish Camp 1 (increase) from
+    Camp 2 (flat / no change) — those predict different directions.
+  </p>
+
   <div class="box">
     <span class="label">Camp 3 is different</span>
-    Because raw bill-count data cannot distinguish self-directed initiative from top-down party assignment, Camp 3 is applied as an interpretive lens, not a falsifiable hypothesis — it is compatible with any directional result.
+    Because raw bill-count data cannot distinguish self-directed initiative
+    from top-down party assignment, Camp 3 is applied as an interpretive lens,
+    not a falsifiable hypothesis — it is compatible with any directional result.
   </div>
 </div>
 
+
+<!-- SLIDE 9 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">Literature · the gap</div>
   <h2>What nobody has tested — and what this adds</h2>
+
   <div class="gapgrid">
+
     <div class="gapcard">
       <div class="icon">◐</div>
       <span class="label">Data-gap</span>
-      <p>Individual-level bill authorship in the Mazhilis has never been catalogued.</p>
+      <p>
+        Individual-level bill authorship in the Mazhilis has never been
+        catalogued.
+      </p>
     </div>
+
     <div class="gapcard">
       <div class="icon">◑</div>
       <span class="label">Test-gap</span>
-      <p>Because that data doesn't exist, no one has resolved the Camp 1 vs. Camp 2 debate for Kazakhstan's combined quota — or for any Central Asian legislature.</p>
+      <p>
+        Because that data doesn't exist, no one has resolved the Camp 1 vs.
+        Camp 2 debate for Kazakhstan's combined quota — or for any Central
+        Asian legislature.
+      </p>
     </div>
+
     <div class="gapcard contribution">
       <div class="icon">●</div>
       <span class="label">This study adds</span>
-      <p>The first individual-level bill-initiation dataset for Mazhilis women MPs, used to directly test the Performance vs. Institutional Ceiling debate outside a Western or MENA context.</p>
+      <p>
+        The first individual-level bill-initiation dataset for Mazhilis women
+        MPs, used to directly test the Performance vs. Institutional Ceiling
+        debate outside a Western or MENA context.
+      </p>
     </div>
+
   </div>
 </div>
 
+
+<!-- SLIDE 10 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">Institutional context</div>
   <h2>Party gatekeeping, not voter choice</h2>
-  <p>Top-down institutional gatekeeping — not voter selection — determines women's access to parliament in electoral authoritarian contexts <span style="color:#9b9b9b; font-size:0.85em;">(Shalaby &amp; Wängnerud, 2024; Nurbayev et al., 2024; Kagazbaeva et al., 2025)</span>.</p>
+
+  <p>
+    Top-down institutional gatekeeping — not voter selection — determines
+    women's access to parliament in electoral authoritarian contexts
+    <span style="color:#9b9b9b; font-size:0.85em;">
+      (Shalaby &amp; Wängnerud, 2024; Nurbayev et al., 2024;
+      Kagazbaeva et al., 2025)
+    </span>.
+  </p>
+
   <div class="flowrow">
-    <div class="flownode dim">Voters choose a candidate</div>
+
+    <div class="flownode dim">
+      Voters choose a candidate
+    </div>
+
     <div class="flow-arrow">✕</div>
-    <div class="flownode gate">Voters choose a party list</div>
+
+    <div class="flownode gate">
+      Voters choose a party list
+    </div>
+
     <div class="flow-arrow">→</div>
-    <div class="flownode">Party leadership assigns seats</div>
+
+    <div class="flownode">
+      Party leadership assigns seats
+    </div>
+
   </div>
-  <p class="context-note">Kazakhstan reinforces this through closed-list proportional representation <span style="color:#9b9b9b;">(Constitutional Law of RK "On Elections," 1995)</span> — party leadership, not the electorate, is the real gatekeeper.</p>
+
+  <p class="context-note">
+    Kazakhstan reinforces this through closed-list proportional representation
+    <span style="color:#9b9b9b;">
+      (Constitutional Law of RK "On Elections," 1995)
+    </span>
+    — party leadership, not the electorate, is the real gatekeeper.
+  </p>
 </div>
 
+
+<!-- SLIDE 11 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">Theory</div>
   <h2>Theory first, then test</h2>
-  <p>Introducing a legislative gender quota increases the substantive legislative output of women MPs, because structural inclusion lowers barriers to agenda-setting — giving women both the critical mass and institutional legitimacy needed to sponsor legislation.</p>
+
+  <p>
+    Introducing a legislative gender quota increases the substantive
+    legislative output of women MPs, because structural inclusion lowers
+    barriers to agenda-setting — giving women both the critical mass and
+    institutional legitimacy needed to sponsor legislation.
+  </p>
 </div>
 
+
+<!-- SLIDE 12 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">The mechanism · causal chain</div>
   <h2>How the quota is supposed to work</h2>
+
   <div class="chain">
-    <div class="chain-step">Quota raises women's seat share</div>
+
+    <div class="chain-step">
+      Quota raises women's seat share
+    </div>
+
     <div class="arrow">→</div>
-    <div class="chain-step">Less tokenism, more networks</div>
+
+    <div class="chain-step">
+      Less tokenism, more networks
+    </div>
+
     <div class="arrow">→</div>
-    <div class="chain-step">Institutional leverage</div>
+
+    <div class="chain-step">
+      Institutional leverage
+    </div>
+
     <div class="arrow">→</div>
-    <div class="chain-step">More bills initiated per MP</div>
+
+    <div class="chain-step">
+      More bills initiated per MP
+    </div>
+
   </div>
-  <p style="color:#888">Step 1 is verified, not assumed: seat share rose 27.1% → 27.4% in the 7th convocation (2021–2023), the window this study uses.</p>
+
+  <p style="color:#888">
+    Step 1 is verified, not assumed: seat share rose 27.1% → 27.4% in the
+    7th convocation (2021–2023), the window this study uses.
+  </p>
 </div>
 
+
+<!-- SLIDE 13 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">Scope</div>
   <h2>Why the comparison stops at 2023</h2>
-  <p>The 8th convocation (2023–present) is excluded because women's seat share fell to 17.6% — below its pre-quota level. The quota's core mechanism (raising women's presence) did not hold for this period, so including it would conflate two different empirical situations.</p>
+
+  <p>
+    The 8th convocation (2023–present) is excluded because women's seat share
+    fell to 17.6% — below its pre-quota level. The quota's core mechanism
+    (raising women's presence) did not hold for this period, so including it
+    would conflate two different empirical situations.
+  </p>
 </div>
 
+
+<!-- SLIDE 14 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">Hypothesis</div>
   <h2>H1</h2>
+
   <div class="h1statement">
-    <b>H1:</b> The implementation of Kazakhstan's 30% combined gender-youth quota (2021) increased the average number of laws initiated per woman MP in the Mazhilis, compared to the pre-quota period (2016–2021).
+    <b>H1:</b>
+    The implementation of Kazakhstan's 30% combined gender-youth quota
+    (2021) increased the average number of laws initiated per woman MP in
+    the Mazhilis, compared to the pre-quota period (2016–2021).
   </div>
-  <div class="box"><span class="label">IV · cause</span>Implementation of the 30% combined quota (2016–2021 vs. 2021–2023)</div>
-  <div class="box"><span class="label">DV · outcome</span>Average number of laws initiated per woman MP, per session</div>
-  <div class="box"><span class="label">Direction</span>Positive ▲ (quota → more legislative output per MP)</div>
+
+  <div class="box">
+    <span class="label">IV · cause</span>
+    Implementation of the 30% combined quota
+    (2016–2021 vs. 2021–2023)
+  </div>
+
+  <div class="box">
+    <span class="label">DV · outcome</span>
+    Average number of laws initiated per woman MP, per session
+  </div>
+
+  <div class="box">
+    <span class="label">Direction</span>
+    Positive ▲ (quota → more legislative output per MP)
+  </div>
 </div>
 
+
+<!-- SLIDE 15 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">AI transparency</div>
   <h2>How I worked with AI</h2>
-  <p><em>[Write this yourself: how Claude was used across sessions — as a discussion partner pressure-testing your question, sources, camps, theory, and mechanism — and what you decided and wrote yourself.]</em></p>
+
+  <p>
+    <em>
+      [Write this yourself: how Claude was used across sessions — as a
+      discussion partner pressure-testing your question, sources, camps,
+      theory, and mechanism — and what you decided and wrote yourself.]
+    </em>
+  </p>
 </div>
 
+
+<!-- SLIDE 16 -->
 <div class="slide">
   <div class="topbar"></div>
   <div class="kicker">References</div>
   <h2>Works Cited</h2>
+
   <div class="refs">
-    <p>Ajwang, O. (2026). Critical gaps in representation: the promise and limits of quota reforms in Kenya. <em>Democratization</em>.</p>
-    <p>Childs, S., &amp; Krook, M. L. (2008). Critical mass theory and women's political representation. <em>Political Studies</em>, 56(3), 725–736.</p>
-    <p>Constitutional Law of the Republic of Kazakhstan (1995). On elections in the Republic of Kazakhstan.</p>
-    <p>Farrow, et al. (2020). GO-GN Research Methods Handbook.</p>
-    <p>Jensen, C., &amp; Wang, S. (2025). Do gender quotas increase legislative voting attendance? The case of the European Parliament. <em>Journal of European Public Policy</em>.</p>
-    <p>Kagazbaeva, A., Kazybekova, A., &amp; Axakalova, G. (2025). Evaluating gender policy in Kazakhstan. <em>Journal of International Women's Studies</em>, 27.</p>
-    <p>Nurbayev, Z. Y., Sultangazy, G. Z., &amp; Serikbayev, B. S. (2024). A study of political party affiliation as a means to enhance gender equality and women's political participation in Kazakhstan. <em>Public Administration and Policy</em>, 27(1), 45–57.</p>
-    <p>Shalaby, M., &amp; Wängnerud, L. (2024). Gender and authoritarian politics: citizens and elites' responses to gender reforms. <em>Comparative Political Studies</em>, 57(14), 2263–2280.</p>
+
+    <p>
+      Ajwang, O. (2026). Critical gaps in representation: the promise and
+      limits of quota reforms in Kenya. <em>Democratization</em>.
+    </p>
+
+    <p>
+      Childs, S., &amp; Krook, M. L. (2008). Critical mass theory and women's
+      political representation. <em>Political Studies</em>, 56(3), 725–736.
+    </p>
+
+    <p>
+      Constitutional Law of the Republic of Kazakhstan (1995).
+      On elections in the Republic of Kazakhstan.
+    </p>
+
+    <p>
+      Farrow, et al. (2020). GO-GN Research Methods Handbook.
+    </p>
+
+    <p>
+      Jensen, C., &amp; Wang, S. (2025). Do gender quotas increase legislative
+      voting attendance? The case of the European Parliament.
+      <em>Journal of European Public Policy</em>.
+    </p>
+
+    <p>
+      Kagazbaeva, A., Kazybekova, A., &amp; Axakalova, G. (2025).
+      Evaluating gender policy in Kazakhstan.
+      <em>Journal of International Women's Studies</em>, 27.
+    </p>
+
+    <p>
+      Nurbayev, Z. Y., Sultangazy, G. Z., &amp; Serikbayev, B. S. (2024).
+      A study of political party affiliation as a means to enhance gender
+      equality and women's political participation in Kazakhstan.
+      <em>Public Administration and Policy</em>, 27(1), 45–57.
+    </p>
+
+    <p>
+      Shalaby, M., &amp; Wängnerud, L. (2024).
+      Gender and authoritarian politics: citizens and elites' responses to
+      gender reforms. <em>Comparative Political Studies</em>, 57(14), 2263–2280.
+    </p>
+
   </div>
 </div>
 
-<div class="slide intro-slide">
+
+<!-- THANK YOU SLIDE -->
+<div class="slide intro-slide thank-you-slide">
   <div class="topbar"></div>
-  <svg class="intro-art" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="100" cy="60" r="20" fill="#c9972e" opacity="0.85"/>
-    <g stroke="#c9972e" stroke-width="2.5" opacity="0.85">
-      <line x1="100" y1="60" x2="100" y2="18" />
-      <line x1="100" y1="60" x2="126" y2="30" />
-      <line x1="100" y1="60" x2="74" y2="30" />
-      <line x1="100" y1="60" x2="140" y2="60" />
-      <line x1="100" y1="60" x2="60" y2="60" />
-    </g>
-    <path d="M50 145 Q100 178 150 145 L150 158 Q100 191 50 158 Z" fill="#c9972e" opacity="0.85"/>
-  </svg>
-  <h1>Thank you</h1>
-  <p style="color:#9bb0c4;">PLS 210 · smthelse2</p>
+
+  <div class="intro-decoration one"></div>
+  <div class="intro-decoration two"></div>
+  <div class="intro-decoration three"></div>
+
+  <div class="intro-content">
+
+    <div class="kicker">PLS 210 · Research Design</div>
+
+    <h1>Thank you</h1>
+
+    <div class="thank-you-line"></div>
+
+    <p>
+      smthelse2
+    </p>
+
+  </div>
 </div>
 
+
+<!-- FOOTER -->
 <div class="footer">
   <span id="counter">1 / 17</span>
   <span>Use → or Space to advance · ← to go back</span>
 </div>
 
+
 <script>
   const slides = document.querySelectorAll('.slide');
   let i = 0;
+
   function show(n) {
     slides[i].classList.remove('active');
+
     i = (n + slides.length) % slides.length;
+
     slides[i].classList.add('active');
-    document.getElementById('counter').textContent = (i+1) + ' / ' + slides.length;
+
+    document.getElementById('counter').textContent =
+      (i + 1) + ' / ' + slides.length;
   }
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') show(i+1);
-    if (e.key === 'ArrowLeft') show(i-1);
+    if (e.key === 'ArrowRight' || e.key === ' ') show(i + 1);
+    if (e.key === 'ArrowLeft') show(i - 1);
   });
 </script>
 
